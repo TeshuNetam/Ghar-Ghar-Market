@@ -1,403 +1,245 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaon Bazaar — गाँव बाज़ार</title>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
-<style>
-:root{
-  --green:#2d6a2d;--green-light:#4a9e4a;--green-pale:#edf5ed;
-  --yellow:#e8a020;--yellow-pale:#fef7e8;
-  --white:#fafaf7;--dark:#1a2e1a;--gray:#6b7a6b;--border:#d4e0d4;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,250,247,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-icon{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px}
-.nav-logo-text{font-family:'Tiro Devanagari Hindi',serif;font-size:20px;color:var(--green)}
-.nav-logo-sub{font-size:10px;color:var(--gray)}
-.nav-btn{padding:9px 18px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;text-align:center;background:radial-gradient(ellipse at 60% 40%,#c8e6c8 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,#fde8c0 0%,transparent 50%),var(--white)}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;color:var(--green);font-weight:500;margin-bottom:20px}
-.hero-badge span{width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero-title{font-family:'Tiro Devanagari Hindi',serif;font-size:clamp(32px,8vw,68px);color:var(--dark);line-height:1.2;margin-bottom:14px}
-.hero-title span{color:var(--green)}
-.hero-sub{font-size:15px;color:var(--gray);max-width:440px;line-height:1.7;margin-bottom:32px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.btn-primary{padding:14px 26px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(45,106,45,0.25)}
-.btn-secondary{padding:14px 26px;background:#fff;color:var(--green);border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px}
-.hero-stats{display:flex;gap:28px;margin-top:44px;flex-wrap:wrap;justify-content:center}
-.stat{text-align:center}
-.stat-n{font-size:26px;font-weight:600;color:var(--green)}
-.stat-l{font-size:12px;color:var(--gray);margin-top:2px}
-
-/* HOW IT WORKS */
-.section{padding:70px 20px;max-width:960px;margin:0 auto}
-.section-tag{display:inline-block;background:var(--green-pale);color:var(--green);font-size:12px;font-weight:500;padding:4px 14px;border-radius:20px;margin-bottom:12px}
-.section-title{font-family:'Tiro Devanagari Hindi',serif;font-size:clamp(22px,5vw,38px);color:var(--dark);margin-bottom:8px}
-.section-sub{font-size:14px;color:var(--gray);max-width:480px;line-height:1.7}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:36px}
-.step-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px}
-.step-num{width:34px;height:34px;background:var(--green);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;margin-bottom:12px}
-.step-icon{font-size:26px;margin-bottom:8px}
-.step-title{font-weight:600;font-size:14px;color:var(--dark);margin-bottom:6px}
-.step-desc{font-size:12px;color:var(--gray);line-height:1.6}
-.step-tag{display:inline-block;margin-top:10px;font-size:11px;padding:3px 10px;border-radius:20px}
-.tag-farmer{background:var(--green-pale);color:var(--green)}
-.tag-buyer{background:var(--yellow-pale);color:#7a4f2d}
-
-/* PRODUCTS */
-.products-section{background:linear-gradient(135deg,var(--green-pale),var(--yellow-pale));padding:70px 20px}
-.products-inner{max-width:960px;margin:0 auto}
-.prod-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:36px}
-.prod-card{background:#fff;border-radius:14px;padding:18px;text-align:center;border:1px solid var(--border)}
-.prod-emoji{font-size:36px;margin-bottom:8px}
-.prod-name{font-weight:600;font-size:13px;color:var(--dark);margin-bottom:3px}
-.prod-season{font-size:11px;color:var(--gray)}
-.prod-price{font-size:13px;font-weight:500;color:var(--green);margin-top:6px}
-.prod-urgent{display:inline-block;background:#fff3e0;color:#e65100;font-size:10px;padding:2px 7px;border-radius:20px;margin-top:5px}
-
-/* LISTINGS */
-.listings-section{padding:70px 20px;background:var(--white)}
-.listings-inner{max-width:960px;margin:0 auto}
-.listings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:28px}
-.listing-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px}
-.lc-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.lc-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
-.lc-name{font-weight:600;font-size:14px;color:var(--dark)}
-.lc-loc{font-size:11px;color:var(--gray);margin-top:2px}
-.lc-urgent{background:#fff3e0;color:#e65100;font-size:10px;font-weight:500;padding:3px 7px;border-radius:20px;margin-left:auto;white-space:nowrap}
-.lc-items{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.lc-item{background:var(--green-pale);color:var(--green);font-size:11px;padding:4px 9px;border-radius:20px}
-.lc-actions{display:flex;gap:8px}
-.btn-locate{flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--gray);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
-.btn-call-now{flex:1;padding:8px;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px}
-
-/* REGISTER */
-.register-section{padding:70px 20px;background:#fff}
-.register-inner{max-width:900px;margin:40px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:32px}
-@media(max-width:600px){.register-inner{grid-template-columns:1fr}}
-.reg-card{border:1px solid var(--border);border-radius:18px;padding:26px}
-.reg-card.farmer-card{border-top:4px solid var(--green)}
-.reg-card.buyer-card{border-top:4px solid var(--yellow)}
-.reg-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
-.reg-icon.g{background:var(--green-pale)}
-.reg-icon.y{background:var(--yellow-pale)}
-.reg-title{font-weight:600;font-size:17px;color:var(--dark);margin-bottom:5px}
-.reg-desc{font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:18px}
-.ai-hint{display:flex;align-items:center;gap:8px;background:var(--green-pale);border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:12px;color:var(--green);cursor:pointer}
-.form-group{margin-bottom:12px}
-.form-label{font-size:12px;font-weight:500;color:var(--gray);margin-bottom:5px;display:block}
-.form-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-size:13px;color:var(--dark);background:var(--white);font-family:'DM Sans',sans-serif}
-.form-input:focus{outline:none;border-color:var(--green)}
-.form-select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font-size:13px;color:var(--dark);background:var(--white);font-family:'DM Sans',sans-serif}
-.btn-reg{width:100%;padding:12px;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;margin-top:6px;color:#fff}
-.btn-reg.green{background:var(--green)}
-.btn-reg.yellow{background:var(--yellow)}
-
-/* AI ASSISTANT BUBBLE */
-.assistant-bubble{position:fixed;bottom:22px;right:22px;z-index:300}
-.ass-btn{width:58px;height:58px;background:var(--green);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(45,106,45,0.35);color:#fff;font-size:24px;position:relative}
-.ass-badge{position:absolute;top:-2px;right:-2px;width:18px;height:18px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:600}
-.ass-panel{position:absolute;bottom:68px;right:0;width:300px;background:#fff;border-radius:18px;border:1px solid var(--border);box-shadow:0 8px 40px rgba(0,0,0,0.15);display:none;flex-direction:column;overflow:hidden;max-height:420px}
-.ass-panel.open{display:flex}
-.ass-header{background:var(--green);padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.ass-av{width:34px;height:34px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
-.ass-hname{color:#fff;font-weight:600;font-size:13px}
-.ass-hstatus{color:rgba(255,255,255,0.7);font-size:10px}
-.ass-close{margin-left:auto;color:#fff;background:none;border:none;cursor:pointer;font-size:18px;opacity:0.8}
-.ass-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
-.amsg{display:flex;gap:6px;align-items:flex-end}
-.amsg.user{flex-direction:row-reverse}
-.abubble{padding:9px 12px;border-radius:14px;font-size:12px;line-height:1.6;max-width:82%}
-.amsg.bot .abubble{background:var(--green-pale);color:var(--dark);border-bottom-left-radius:3px}
-.amsg.user .abubble{background:var(--green);color:#fff;border-bottom-right-radius:3px}
-.amsg-av{width:26px;height:26px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0}
-.ass-sug{padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;border-top:1px solid var(--border);flex-shrink:0}
-.asug{padding:5px 10px;border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--green);background:#fff;cursor:pointer}
-.ass-inp-row{padding:10px 12px;border-top:1px solid var(--border);display:flex;gap:6px;flex-shrink:0}
-.ass-inp{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:9px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--white)}
-.ass-inp:focus{outline:none;border-color:var(--green)}
-.ass-send-btn{padding:8px 12px;background:var(--green);color:#fff;border:none;border-radius:9px;font-size:12px;cursor:pointer}
-.atyping{display:flex;gap:3px;align-items:center}
-.atyping span{width:5px;height:5px;background:var(--green-light);border-radius:50%;animation:abounce 1s infinite}
-.atyping span:nth-child(2){animation-delay:.15s}
-.atyping span:nth-child(3){animation-delay:.3s}
-@keyframes abounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:400;display:none;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.open{display:flex}
-.modal-box{background:#fff;border-radius:18px;padding:26px;max-width:340px;width:100%}
-.modal-title{font-weight:600;font-size:16px;color:var(--dark);margin-bottom:4px}
-.modal-sub{font-size:13px;color:var(--gray);margin-bottom:18px}
-.phone-display{background:var(--green-pale);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px}
-.phone-num{font-size:24px;font-weight:600;color:var(--green);letter-spacing:2px}
-.phone-lbl{font-size:11px;color:var(--green);margin-top:3px;opacity:0.7}
-.modal-call-btn{width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
-.modal-cancel{width:100%;padding:10px;background:var(--white);color:var(--gray);border:1px solid var(--border);border-radius:10px;font-size:13px;cursor:pointer}
-
-/* FOOTER */
-footer{background:var(--dark);color:#fff;padding:36px 20px;text-align:center}
-.footer-logo{font-family:'Tiro Devanagari Hindi',serif;font-size:22px;margin-bottom:6px}
-.footer-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px}
-.footer-copy{font-size:11px;color:rgba(255,255,255,0.3)}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaon Bazaar - Hyperlocal Market</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .phone-container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 8px solid #222;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Layer 1: AI Greeting Header */
+        .ai-header {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .ai-avatar {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .ai-bubble {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        /* Dynamic Content Layers */
+        .content-layer {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hidden {
+            display: none !important;
+        }
+        /* Buttons & UI Elements */
+        .btn {
+            background: #11998e;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+            width: 100%;
+            transition: 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-secondary {
+            background: #ff9f43;
+        }
+        .btn-back {
+            background: #777;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .item-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .status-badge {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <div class="nav-logo-icon"><i class="ti ti-plant-2"></i></div>
-    <div>
-      <div class="nav-logo-text">गाँव बाज़ार</div>
-      <div class="nav-logo-sub">Chhattisgarh Farm Marketplace</div>
-    </div>
-  </div>
-  <button class="nav-btn" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">अभी जुड़ें →</button>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-badge"><span></span> Chhattisgarh के किसानों के लिए</div>
-  <h1 class="hero-title">ताज़ा माल, सीधे<br><span>किसान से</span></h1>
-  <p class="hero-sub">आम हो या दूध — अब गाँव के किसान से सीधे खरीदो। कोई बिचौलिया नहीं, कोई extra पैसा नहीं।</p>
-  <div class="hero-btns">
-    <button class="btn-primary" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})"><i class="ti ti-search"></i> किसान खोजें</button>
-    <button class="btn-secondary" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})"><i class="ti ti-user-plus"></i> किसान हूँ, जुड़ना है</button>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">120+</div><div class="stat-l">किसान जुड़े</div></div>
-    <div class="stat"><div class="stat-n">5 km</div><div class="stat-l">के अंदर खोजें</div></div>
-    <div class="stat"><div class="stat-n">0%</div><div class="stat-l">Commission</div></div>
-    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">AI सहायक</div></div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<div style="background:var(--white)">
-<div class="section">
-  <div class="section-tag">कैसे काम करता है</div>
-  <h2 class="section-title">बहुत आसान — 3 कदम में</h2>
-  <p class="section-sub">किसान माल डालो, खरीदार खोजो, सीधे फोन करो।</p>
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <div class="step-icon">👨‍🌾</div>
-      <div class="step-title">किसान register करे</div>
-      <div class="step-desc">Mama अपना नाम, गाँव, नंबर डालें। AI सहायक मदद करेगा — बस बात करो।</div>
-      <span class="step-tag tag-farmer">किसान के लिए</span>
-    </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <div class="step-icon">📱</div>
-      <div class="step-title">खरीदार खोजे</div>
-      <div class="step-desc">Papa app खोलें — 5 km के अंदर कौन-कौन क्या बेच रहा है, सब दिखेगा।</div>
-      <span class="step-tag tag-buyer">खरीदार के लिए</span>
-    </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <div class="step-icon">📞</div>
-      <div class="step-title">सीधे Call करो</div>
-      <div class="step-desc">किसान का नंबर दिखेगा — बस call करो। "भैया 2 किलो आम चाहिए।" Deal done!</div>
-      <span class="step-tag tag-buyer">खरीदार के लिए</span>
-    </div>
-    <div class="step-card">
-      <div class="step-num">4</div>
-      <div class="step-icon">🤖</div>
-      <div class="step-title">AI सहायक</div>
-      <div class="step-desc">कुछ समझ नहीं आया? नीचे दाईं तरफ AI से हिंदी में पूछो — वो form भी भरेगा!</div>
-      <span class="step-tag tag-farmer">सबके लिए</span>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- PRODUCTS -->
-<div class="products-section">
-  <div class="products-inner">
-    <div class="section-tag">इस मौसम में</div>
-    <h2 class="section-title">अभी क्या मिल रहा है?</h2>
-    <p class="section-sub">June 2026 — गर्मी का मौसम, आम और दूध की भरमार</p>
-    <div class="prod-cards">
-      <div class="prod-card"><div class="prod-emoji">🥭</div><div class="prod-name">Alphonso आम</div><div class="prod-season">Peak season</div><div class="prod-price">₹80–120/किलो</div><span class="prod-urgent">⚡ Urgent</span></div>
-      <div class="prod-card"><div class="prod-emoji">🥛</div><div class="prod-name">ताज़ा गाय का दूध</div><div class="prod-season">रोज़ सुबह</div><div class="prod-price">₹45–55/लीटर</div><span class="prod-urgent">⚡ आज ही</span></div>
-      <div class="prod-card"><div class="prod-emoji">🥭</div><div class="prod-name">Kesar आम</div><div class="prod-season">Chhattisgarh special</div><div class="prod-price">₹70–90/किलो</div><span class="prod-urgent">⚡ 15 kg बाकी</span></div>
-      <div class="prod-card"><div class="prod-emoji">🐃</div><div class="prod-name">भैंस का दूध</div><div class="prod-season">सुबह-शाम</div><div class="prod-price">₹40–50/लीटर</div></div>
-      <div class="prod-card"><div class="prod-emoji">🫙</div><div class="prod-name">घर का मक्खन</div><div class="prod-season">गर्मी में</div><div class="prod-price">₹350–450/किलो</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- LISTINGS -->
-<div id="listings" class="listings-section">
-  <div class="listings-inner">
-    <div class="section-tag">अभी उपलब्ध</div>
-    <h2 class="section-title">आपके आस-पास के किसान</h2>
-    <p class="section-sub">ये किसान आज माल बेच रहे हैं</p>
-    <div class="listings-grid">
-      <div class="listing-card">
-        <div class="lc-top">
-          <div class="lc-avatar" style="background:#e6f5e6;color:#2d6a2d">RS</div>
-          <div><div class="lc-name">रमेश सिंह (Mama)</div><div class="lc-loc">📍 पलासिया — 1.2 km</div></div>
-          <span class="lc-urgent">🌾 Urgent</span>
+<div class="phone-container">
+    
+    <!-- FRONT/HEADER: The AI Speaker always stays here -->
+    <div class="ai-header">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-bubble" id="aiText">
+            Namaste! Main Gaon Bazaar AI hu. Aaj main aapki kaise madad kar sakti hu?
         </div>
-        <div class="lc-items"><span class="lc-item">🥭 Alphonso — 15 kg</span><span class="lc-item">🥭 Kesar — 8 kg</span></div>
-        <div class="lc-actions">
-          <button class="btn-locate"><i class="ti ti-map-2" style="font-size:13px"></i> Location</button>
-          <button class="btn-call-now" onclick="openModal('रमेश सिंह','98765 43210')"><i class="ti ti-phone" style="font-size:13px"></i> Call करो</button>
-        </div>
-      </div>
-      <div class="listing-card">
-        <div class="lc-top">
-          <div class="lc-avatar" style="background:#fef7e8;color:#7a4f2d">PD</div>
-          <div><div class="lc-name">प्रिया देवी (Uncle की पत्नी)</div><div class="lc-loc">📍 राजेंद्र नगर — 2.1 km</div></div>
-          <span class="lc-urgent">🥛 Urgent</span>
-        </div>
-        <div class="lc-items"><span class="lc-item">🥛 गाय का दूध — 20L</span><span class="lc-item">🫙 मक्खन — 500g</span></div>
-        <div class="lc-actions">
-          <button class="btn-locate"><i class="ti ti-map-2" style="font-size:13px"></i> Location</button>
-          <button class="btn-call-now" onclick="openModal('प्रिया देवी','91234 56789')"><i class="ti ti-phone" style="font-size:13px"></i> Call करो</button>
-        </div>
-      </div>
-      <div class="listing-card">
-        <div class="lc-top">
-          <div class="lc-avatar" style="background:#e6f5e6;color:#2d6a2d">MK</div>
-          <div><div class="lc-name">मोहन कुमार</div><div class="lc-loc">📍 Scheme 54 — 3.5 km</div></div>
-        </div>
-        <div class="lc-items"><span class="lc-item">🥭 Dasheri — 30 kg</span><span class="lc-item">🥛 भैंस दूध — 35L</span></div>
-        <div class="lc-actions">
-          <button class="btn-locate"><i class="ti ti-map-2" style="font-size:13px"></i> Location</button>
-          <button class="btn-call-now" onclick="openModal('मोहन कुमार','97654 32101')"><i class="ti ti-phone" style="font-size:13px"></i> Call करो</button>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 
-<!-- REGISTER -->
-<div id="register" class="register-section">
-  <div style="max-width:960px;margin:0 auto;text-align:center">
-    <div class="section-tag">जुड़ें अभी</div>
-    <h2 class="section-title">किसान हो या खरीदार — दोनों के लिए</h2>
-    <p class="section-sub" style="margin:0 auto">Mama किसान की तरह जुड़ें, Papa खरीदार की तरह। एकदम मुफ़्त।</p>
-  </div>
-  <div class="register-inner">
-    <div class="reg-card farmer-card">
-      <div class="reg-icon g">👨‍🌾</div>
-      <div class="reg-title">किसान के रूप में जुड़ें</div>
-      <div class="reg-desc">Mama जैसे लोग — जिनके पास आम, दूध है और बेचना चाहते हैं।</div>
-      <div class="ai-hint" onclick="openAI('farmer')"><i class="ti ti-robot"></i> <span>समझ नहीं आया? AI से बात करो → वो form भर देगा!</span></div>
-      <div class="form-group"><label class="form-label">पूरा नाम</label><input class="form-input" placeholder="जैसे: रमेश सिंह"/></div>
-      <div class="form-group"><label class="form-label">मोबाइल नंबर</label><input class="form-input" type="tel" placeholder="98765 43210"/></div>
-      <div class="form-group"><label class="form-label">गाँव / कस्बा</label><input class="form-input" placeholder="जैसे: पलासिया, चाम्पा"/></div>
-      <div class="form-group"><label class="form-label">क्या बेचना है?</label>
-        <select class="form-select"><option>🥭 आम</option><option>🥛 दूध</option><option>🥭🥛 आम + दूध दोनों</option><option>🥦 सब्जियाँ</option><option>🌾 अनाज</option></select>
-      </div>
-      <div class="form-group"><label class="form-label">मात्रा और कीमत</label><input class="form-input" placeholder="जैसे: 20 लीटर दूध — ₹50/लीटर"/></div>
-      <button class="btn-reg green" onclick="alert('✅ बहुत बढ़िया! आप गाँव बाज़ार से जुड़ गए। आस-पास के खरीदार आपको call करेंगे!')">✅ किसान के रूप में जुड़ें</button>
+    <!-- LAYER 1: Main Choice Menu -->
+    <div id="layer1" class="content-layer">
+        <button class="btn" onclick="goToLayer2('buy')">🛍️ Mujhe Kuch Kharidna Hai (Urgent)</button>
+        <button class="btn btn-secondary" onclick="goToLayer2('sell')">👩‍🍳 Mujhe Apne Ghar Se Kuch Bechna Hai</button>
     </div>
-    <div class="reg-card buyer-card">
-      <div class="reg-icon y">🛒</div>
-      <div class="reg-title">खरीदार के रूप में जुड़ें</div>
-      <div class="reg-desc">Papa जैसे लोग — जो ताज़ा दूध, आम सीधे किसान से खरीदना चाहते हैं।</div>
-      <div class="ai-hint" onclick="openAI('buyer')"><i class="ti ti-robot"></i> <span>समझ नहीं आया? AI से बात करो!</span></div>
-      <div class="form-group"><label class="form-label">पूरा नाम</label><input class="form-input" placeholder="जैसे: रामलाल यादव"/></div>
-      <div class="form-group"><label class="form-label">मोबाइल नंबर</label><input class="form-input" type="tel" placeholder="98765 43210"/></div>
-      <div class="form-group"><label class="form-label">आप कहाँ रहते हैं?</label><input class="form-input" placeholder="जैसे: चाम्पा, छत्तीसगढ़"/></div>
-      <div class="form-group"><label class="form-label">क्या चाहिए?</label>
-        <select class="form-select"><option>🥭 आम</option><option>🥛 दूध</option><option>🥦 सब्जियाँ</option><option>सब कुछ दिखाओ</option></select>
-      </div>
-      <div class="form-group"><label class="form-label">कितने km के अंदर खोजें?</label>
-        <select class="form-select"><option>2 km</option><option selected>5 km</option><option>10 km</option><option>20 km</option></select>
-      </div>
-      <button class="btn-reg yellow" onclick="alert('✅ बहुत बढ़िया! अब आप आस-पास के किसानों को देख सकते हैं।')">🛒 खरीदार के रूप में जुड़ें</button>
-    </div>
-  </div>
-</div>
 
-<footer>
-  <div class="footer-logo">गाँव बाज़ार</div>
-  <div class="footer-sub">Chhattisgarh के किसानों का अपना बाज़ार • कोई बिचौलिया नहीं</div>
-  <div class="footer-copy">© 2026 Gaon Bazaar — Made with ❤️ for Chhattisgarh</div>
-</footer>
+    <!-- LAYER 2A: Buyer Search Screen -->
+    <div id="layer2-buy" class="content-layer hidden">
+        <div class="input-group">
+            <label>Aapko kya chahiye? (Saman Ka Naam)</label>
+            <input type="text" id="searchItem" placeholder="e.g., Tamatar, Achar, Dudh...">
+        </div>
+        <button class="btn" onclick="goToLayer3('buy')">🔍 Apne Aas-Paas Dhundo</button>
+        <button class="btn btn-back" onclick="goBack(1)">⬅️ Back</button>
+    </div>
 
-<!-- AI BUBBLE -->
-<div class="assistant-bubble">
-  <button class="ass-btn" onclick="toggleAI()">
-    <i class="ti ti-robot"></i>
-    <span class="ass-badge" id="aiBadge">!</span>
-  </button>
-  <div class="ass-panel" id="aiPanel">
-    <div class="ass-header">
-      <div class="ass-av">🌾</div>
-      <div><div class="ass-hname">गाँव सहायक AI</div><div class="ass-hstatus">● हमेशा यहाँ हूँ</div></div>
-      <button class="ass-close" onclick="toggleAI()"><i class="ti ti-x"></i></button>
+    <!-- LAYER 2B: Seller Post Screen (For Your Mom) -->
+    <div id="layer2-sell" class="content-layer hidden">
+        <div class="input-group">
+            <label>Aap kya bechna chahte hain?</label>
+            <input type="text" id="sellItem" placeholder="e.g., Fresh Achar, Homemade Bread">
+        </div>
+        <div class="input-group">
+            <label>Kitna saman available hai?</label>
+            <input type="text" id="sellQty" placeholder="e.g., Only 3 Jars, 2 KG">
+        </div>
+        <button class="btn btn-secondary" onclick="goToLayer3('sell')">📢 Bazaar Me Dalein</button>
+        <button class="btn btn-back" onclick="goBack(1)">⬅️ Back</button>
     </div>
-    <div class="ass-msgs" id="aiMsgs">
-      <div class="amsg bot">
-        <div class="amsg-av">🌾</div>
-        <div class="abubble">नमस्ते! मैं गाँव बाज़ार का AI हूँ। 😊<br><br>किसान हैं या खरीदार? बताइए, मैं मदद करूँगा!</div>
-      </div>
-    </div>
-    <div class="ass-sug" id="aiSug">
-      <button class="asug" onclick="askAI('मैं किसान हूँ')">👨‍🌾 किसान हूँ</button>
-      <button class="asug" onclick="askAI('दूध चाहिए')">🥛 दूध चाहिए</button>
-      <button class="asug" onclick="askAI('आम चाहिए')">🥭 आम चाहिए</button>
-      <button class="asug" onclick="askAI('register कैसे करें')">📝 Register कैसे?</button>
-    </div>
-    <div class="ass-inp-row">
-      <input class="ass-inp" id="aiInput" placeholder="हिंदी में पूछो..." onkeydown="if(event.key==='Enter')sendAI()"/>
-      <button class="ass-send-btn" onclick="sendAI()"><i class="ti ti-send"></i></button>
-    </div>
-  </div>
-</div>
 
-<!-- CALL MODAL -->
-<div class="modal-overlay" id="callModal">
-  <div class="modal-box">
-    <div class="modal-title" id="mName">रमेश सिंह</div>
-    <div class="modal-sub">सीधे call करो — कोई app नहीं, सीधी बात</div>
-    <div class="phone-display">
-      <div class="phone-num" id="mPhone">98765 43210</div>
-      <div class="phone-lbl">किसान का नंबर</div>
+    <!-- LAYER 3A: Buyer Results Screen (With Call Button) -->
+    <div id="layer3-buy" class="content-layer hidden">
+        <h3 style="margin-bottom: 15px;">Aapke Aas-Paas Yeh Mila:</h3>
+        
+        <!-- Example Seller Listing (Simulating someone near) -->
+        <div class="item-card">
+            <span class="status-badge">● Aapke Paas (500 meter door)</span>
+            <h4>Fresh Mango Achar (Homemade)</h4>
+            <p style="color: #666; margin: 5px 0;">Quantity: 3 Jars available</p>
+            <p style="font-size: 13px; margin-bottom: 10px;">Seller: Aunty's Kitchen</p>
+            <!-- Change '1234567890' to a real testing number later -->
+            <a href="tel:1234567890" class="btn" style="margin-bottom:0; background:#27ae60;">📞 Call Karke Order Karein</a>
+        </div>
+
+        <button class="btn btn-back" onclick="goBack(2, 'buy')">⬅️ Back to Search</button>
     </div>
-    <button class="modal-call-btn"><i class="ti ti-phone"></i> अभी Call करो</button>
-    <button class="modal-cancel" onclick="closeModal()">बाद में करूँगा</button>
-  </div>
+
+    <!-- LAYER 3B: Seller Success Screen -->
+    <div id="layer3-sell" class="content-layer hidden">
+        <div style="text-align: center; color: #27ae60; font-size: 50px; margin-bottom: 15px;">✅</div>
+        <h3 style="text-align: center; margin-bottom: 15px;">Aapka Saman Live Ho Gaya Hai!</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Ab jaise hi aapke aas-paas kisi ko iski zarurat hogi, wo aapko direct call karenge.</p>
+        <button class="btn" onclick="goBack(1)">Main Menu Par Jayein</button>
+    </div>
+
 </div>
 
 <script>
-// Call modal
-function openModal(n,p){document.getElementById('mName').textContent=n;document.getElementById('mPhone').textContent=p;document.getElementById('callModal').classList.add('open')}
-function closeModal(){document.getElementById('callModal').classList.remove('open')}
-document.getElementById('callModal').addEventListener('click',function(e){if(e.target===this)closeModal()})
+    // Simple JavaScript to handle Layer Switching and AI Speech Updates
+    function goToLayer2(mode) {
+        document.getElementById('layer1').classList.add('hidden');
+        
+        if (mode === 'buy') {
+            document.getElementById('layer2-buy').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Aapko kis cheez ki emergency hai? Mujhe batayein, main aas-paas check karti hu!";
+        } else if (mode === 'sell') {
+            document.getElementById('layer2-sell').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Wah! Aaj aap kya bana rahe hain ya kya bechna chahte hain? Detail daliye.";
+        }
+    }
 
-// AI panel
-var aiOpen=false;
-function toggleAI(){aiOpen=!aiOpen;document.getElementById('aiPanel').classList.toggle('open',aiOpen);document.getElementById('aiBadge').style.display=aiOpen?'none':'flex'}
-function openAI(t){aiOpen=true;document.getElementById('aiPanel').classList.add('open');document.getElementById('aiBadge').style.display='none';askAI(t==='farmer'?'मैं किसान हूँ, register करना है':'मैं खरीदार हूँ')}
+    function goToLayer3(mode) {
+        if (mode === 'buy') {
+            document.getElementById('layer2-buy').classList.add('hidden');
+            document.getElementById('layer3-buy').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Mujhe aapke sabse paas yeh deals mili hain! Turant phone karke deal pakki karein.";
+        } else if (mode === 'sell') {
+            document.getElementById('layer2-sell').classList.add('hidden');
+            document.getElementById('layer3-sell').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Aapka kam ho gaya! Ab aap aaram kijiye, order aane par phone bajega. 😊";
+        }
+    }
 
-var replies={
-  'किसान':'👨‍🌾 किसान के लिए:\n1️⃣ नीचे "जुड़ें" section में जाएं\n2️⃣ बाईं तरफ form भरें\n3️⃣ नाम, नंबर, गाँव और माल बताएं\n4️⃣ Submit करें!\n\nया मुझसे बात करते रहें — मैं guide करूँगा।',
-  'दूध':'🥛 दूध के लिए:\n\nअभी उपलब्ध:\n• प्रिया देवी — 2.1 km — 20L — ₹50/L\n• मोहन कुमार — 3.5 km — 35L — ₹45/L\n\n"किसान देखें" section में जाकर Call करो!',
-  'आम':'🥭 आम के लिए:\n\nअभी उपलब्ध:\n• रमेश सिंह — 1.2 km — 15 kg — ₹120/kg\n• मोहन कुमार — 3.5 km — 30 kg — ₹80/kg\n\nजल्दी करें — आज ही बेचने हैं!',
-  'register':'📝 Register करना बहुत आसान!\n\nनीचे "जुड़ें" section में:\n👨‍🌾 किसान हैं? बाईं तरफ form\n🛒 खरीदार हैं? दाईं तरफ form\n\nसिर्फ नाम, नंबर, गाँव चाहिए। 2 मिनट!',
-  'default':'मैं इन चीज़ों में मदद कर सकता हूँ:\n• Register कैसे करें\n• दूध/आम कहाँ मिलेगा\n• Call कैसे करें\n\nकोई भी सवाल पूछें!'
-};
-function getReply(m){m=m.toLowerCase();if(m.includes('किसान')||m.includes('farmer')||m.includes('बेचना'))return replies['किसान'];if(m.includes('दूध')||m.includes('milk'))return replies['दूध'];if(m.includes('आम')||m.includes('mango'))return replies['आम'];if(m.includes('register')||m.includes('रजिस्टर')||m.includes('जुड़'))return replies['register'];return replies['default']}
-function addAIMsg(t,u){var m=document.getElementById('aiMsgs');var d=document.createElement('div');d.className='amsg '+(u?'user':'bot');d.innerHTML=u?'<div class="abubble">'+t+'</div>':'<div class="amsg-av">🌾</div><div class="abubble">'+t.replace(/\n/g,'<br>')+'</div>';m.appendChild(d);m.scrollTop=m.scrollHeight}
-function sendAI(){var i=document.getElementById('aiInput');var t=i.value.trim();if(!t)return;i.value='';addAIMsg(t,true);document.getElementById('aiSug').style.display='none';setTimeout(function(){addAIMsg(getReply(t),false)},700)}
-function askAI(t){if(!aiOpen)toggleAI();addAIMsg(t,true);document.getElementById('aiSug').style.display='none';setTimeout(function(){addAIMsg(getReply(t),false)},700)}
+    function goBack(targetLayer, currentMode) {
+        // Hide all layers first
+        document.getElementById('layer1').classList.add('hidden');
+        document.getElementById('layer2-buy').classList.add('hidden');
+        document.getElementById('layer2-sell').classList.add('hidden');
+        document.getElementById('layer3-buy').classList.add('hidden');
+        document.getElementById('layer3-sell').classList.add('hidden');
+
+        // Show the correct layer based on navigation
+        if (targetLayer === 1) {
+            document.getElementById('layer1').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Namaste! Main Gaon Bazaar AI hu. Aaj main aapki kaise madad kar sakti hu?";
+        } else if (targetLayer === 2 && currentMode === 'buy') {
+            document.getElementById('layer2-buy').classList.remove('hidden');
+            document.getElementById('aiText').innerText = "Aapko kis cheez ki emergency hai?";
+        }
+    }
 </script>
+
 </body>
 </html>
